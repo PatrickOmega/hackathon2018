@@ -8,14 +8,16 @@ using UnityEngine.UI;
 
 public class PostRequest : MonoBehaviour {
 
-	public TextMesh displayTxt;
+	private TextMesh displayTxt;
 
-	private string url = "https://flask.sa-hackathon-06.cluster.extend.sap.cx";
+	private string url = "https://django.sa-hackathon-06.cluster.extend.sap.cx/rest/v1/orders";
 
-	public UnityWebRequest request()
+	public UnityWebRequest request(string productCode, string quantity, GameObject notificationArea)
 	{
+		displayTxt = notificationArea.GetComponent<TextMesh>();
+
 		var req = new UnityWebRequest(url, "POST");
-		Order order = new Order();
+		Order order = new Order(productCode, quantity);
 		string json = JsonUtility.ToJson(order, true);
 		Debug.Log(json);
 		byte[] rawBody = Encoding.UTF8.GetBytes(json);

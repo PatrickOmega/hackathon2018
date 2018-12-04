@@ -7,7 +7,15 @@ using UnityEngine;
 public class Order {
 
 	public string username = "patrick.nicoll@sap.com";
-	public string productCode = "M283838P";
-	public Address address = new Address();
+	public string productCode;
+    public int quantity;
+
+	public Order(string productCode, string quantity)
+	{
+		this.productCode = productCode;
+        this.quantity = Int32.Parse(quantity);
+	}
+
+	
 	
 }
